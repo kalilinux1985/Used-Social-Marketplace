@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<title>Taboo Toybox - Sign In</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="author" content="Webestica.com">
+		<meta name="description" content="Bootstrap 5 based Social Media Network and Community Theme">
+
+		<script>
+			const storedTheme = localStorage.getItem('theme')
+
+			const getPreferredTheme = () => {
+				if (storedTheme) {
+					return storedTheme
+				}
+				return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+			}
+
+			const setTheme = function (theme) {
+				if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					document.documentElement.setAttribute('data-bs-theme', 'dark')
+				} else {
+					document.documentElement.setAttribute('data-bs-theme', theme)
+				}
+			}
+
+			setTheme(getPreferredTheme())
+
+			window.addEventListener('DOMContentLoaded', () => {
+				var el = document.querySelector('.theme-icon-active');
+				if (el != 'undefined' && el != null) {
+					const showActiveTheme = theme => {
+						const activeThemeIcon = document.querySelector('.theme-icon-active use')
+						const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+						const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+						document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+							element.classList.remove('active')
+						})
+
+						btnToActive.classList.add('active')
+						activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+					}
+
+					window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+						if (storedTheme !== 'light' || storedTheme !== 'dark') {
+							setTheme(getPreferredTheme())
+						}
+					})
+
+					showActiveTheme(getPreferredTheme())
+
+					document.querySelectorAll('[data-bs-theme-value]')
+						.forEach(toggle => {
+							toggle.addEventListener('click', () => {
+								const theme = toggle.getAttribute('data-bs-theme-value')
+								localStorage.setItem('theme', theme)
+								setTheme(theme)
+								showActiveTheme(theme)
+							})
+						})
+
+				}
+			})
+
+		</script>
+
+		<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com/">
+		<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+
+		<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	</head>
+
+	<body>
+
+		<main>
+
+			<div class="container">
+				<div class="row justify-content-center align-items-center vh-100 py-5">
+					<div class="col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+						<div class="card card-body text-center p-4 p-sm-5">
+							<h1 class="mb-2">Sign in</h1>
+							<p class="mb-0">Don't have an account?<a href="sign-up.html"> Click here to sign up</a></p>
+							<form class="mt-sm-4" id="signinForm">
+								<div class="mb-3 input-group-lg">
+									<input type="email" class="form-control" placeholder="Enter email" id="email" required>
+								</div>
+								<div class="mb-3 position-relative">
+									<div class="input-group input-group-lg">
+										<input class="form-control fakepassword" type="password" id="password" placeholder="Enter password"
+											required>
+										<span class="input-group-text p-0">
+											<i class="fakepasswordicon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
+										</span>
+									</div>
+								</div>
+								<div class="mb-3 d-sm-flex justify-content-between">
+									<div>
+										<input type="checkbox" class="form-check-input" id="rememberCheck">
+										<label class="form-check-label" for="rememberCheck">Remember me?</label>
+									</div>
+									<a href="forgot-password.html">Forgot password?</a>
+								</div>
+								<div class="d-grid"><button type="submit" class="btn btn-lg btn-primary">Login</button></div>
+								<p class="mb-0 mt-3">©2024 <a target="_blank" href="https://www.webestica.com/">Webestica.</a> All
+									rights reserved</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+		<script src="assets/vendor/pswmeter/pswmeter.min.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+		<script src="assets/js/functions.js"></script>
+
+		<script>
+			// Initialize Supabase client
+			// IMPORTANT: Replace with your actual Supabase URL and Anon Key
+			const SUPABASE_URL = 'https://sgrymumupawnbsyinkec.supabase.co';
+			const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNncnltdW11cGF3bmJzeWlua2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0NDQyMTIsImV4cCI6MjA2ODAyMDIxMn0.s3bCSPMOTmVje16Il1ZqfL8LC2uaRtgw4gWzjO20wEM';
+			const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const signinForm = document.getElementById('signinForm');
+				const emailInput = document.getElementById('email');
+				const passwordInput = document.getElementById('password');
+
+				signinForm.addEventListener('submit', async (event) => {
+					event.preventDefault(); // Prevent default form submission
+
+					const email = emailInput.value;
+					const password = passwordInput.value;
+
+					try {
+						const { data, error } = await supabase.auth.signInWithPassword({
+							email: email,
+							password: password,
+						});
+
+						if (error) {
+							throw error;
+						}
+
+						// If login is successful, data.user will contain the user's information
+						alert('Login successful! Redirecting to dashboard...');
+						// Redirect to the dashboard page after successful login
+						window.location.href = 'dashboard.html'; // Changed redirection page
+
+					} catch (error) {
+						alert('Login failed: ' + error.message);
+						console.error('Login error:', error);
+					}
+				});
+			});
+		</script>
+
+	</body>
+
+</html>

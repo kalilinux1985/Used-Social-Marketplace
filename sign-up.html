@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+	<head>
+		<title>Taboo Toybox - Sign Up</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="author" content="Webestica.com">
+		<meta name="description" content="Bootstrap 5 based Social Media Network and Community Theme">
+
+		<script>
+			const storedTheme = localStorage.getItem('theme')
+
+			const getPreferredTheme = () => {
+				if (storedTheme) {
+					return storedTheme
+				}
+				return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'light'
+			}
+
+			const setTheme = function (theme) {
+				if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					document.documentElement.setAttribute('data-bs-theme', 'dark')
+				} else {
+					document.documentElement.setAttribute('data-bs-theme', theme)
+				}
+			}
+
+			setTheme(getPreferredTheme())
+
+			window.addEventListener('DOMContentLoaded', () => {
+				var el = document.querySelector('.theme-icon-active');
+				if (el != 'undefined' && el != null) {
+					const showActiveTheme = theme => {
+						const activeThemeIcon = document.querySelector('.theme-icon-active use')
+						const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+						const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+						document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+							element.classList.remove('active')
+						})
+
+						btnToActive.classList.add('active')
+						activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+					}
+
+					window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+						if (storedTheme !== 'light' || storedTheme !== 'dark') {
+							setTheme(getPreferredTheme())
+						}
+					})
+
+					showActiveTheme(getPreferredTheme())
+
+					document.querySelectorAll('[data-bs-theme-value]')
+						.forEach(toggle => {
+							toggle.addEventListener('click', () => {
+								const theme = toggle.getAttribute('data-bs-theme-value')
+								localStorage.setItem('theme', theme)
+								setTheme(theme)
+								showActiveTheme(theme)
+							})
+						})
+
+				}
+			})
+
+		</script>
+
+		<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+		<link rel="preconnect" href="https://fonts.googleapis.com/">
+		<link rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+
+		<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
+		<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	</head>
+
+	<body>
+
+		<main>
+
+			<div class="container">
+				<div class="row justify-content-center align-items-center vh-100 py-5">
+					<div class="col-sm-10 col-md-8 col-lg-7 col-xl-6 col-xxl-5">
+						<div class="card card-body rounded-3 p-4 p-sm-5">
+							<div class="text-center">
+								<h1 class="mb-2">Sign up</h1>
+								<span class="d-block">Already have an account? <a href="sign-in.html">Sign in here</a></span>
+							</div>
+							<form class="mt-4" id="signupForm">
+								<div class="mb-3 input-group-lg">
+									<input type="text" class="form-control" placeholder="Enter username" id="username" required>
+								</div>
+								<div class="mb-3 input-group-lg">
+									<input type="email" class="form-control" placeholder="Enter email" id="email" required>
+								</div>
+								<div class="mb-3 position-relative">
+									<div class="input-group input-group-lg">
+										<input class="form-control fakepassword" type="password" id="psw-input"
+											placeholder="Enter new password" required>
+										<span class="input-group-text p-0">
+											<i class="fakepasswordicon fa-solid fa-eye-slash cursor-pointer p-2 w-40px"></i>
+										</span>
+									</div>
+									<div id="pswmeter" class="mt-2"></div>
+									<div class="d-flex mt-1">
+										<div id="pswmeter-message" class="rounded"></div>
+										<div class="ms-auto">
+											<i class="bi bi-info-circle ps-1" data-bs-container="body" data-bs-toggle="popover"
+												data-bs-placement="top"
+												data-bs-content="Include at least one uppercase, one lowercase, one special character, one number and 8 characters long."
+												data-bs-original-title="" title=""></i>
+										</div>
+									</div>
+								</div>
+								<div class="mb-3 input-group-lg">
+									<input class="form-control" type="password" placeholder="Confirm password" id="confirm-psw-input"
+										required>
+								</div>
+
+								<div class="mb-3">
+									<label class="form-label d-block">Account Type:</label>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="accountType" id="radioBuyer" value="buyer"
+											checked>
+										<label class="form-check-label" for="radioBuyer">Buyer</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="accountType" id="radioSeller" value="seller">
+										<label class="form-check-label" for="radioSeller">Seller</label>
+									</div>
+								</div>
+
+								<div class="mb-3 text-start">
+									<input type="checkbox" class="form-check-input" id="keepsingnedCheck">
+									<label class="form-check-label" for="keepsingnedCheck"> Keep me signed in</label>
+								</div>
+								<div class="d-grid"><button type="submit" class="btn btn-lg btn-primary">Sign me up</button></div>
+								<p class="mb-0 mt-3 text-center">©2022 <a target="_blank"
+										href="https://www.webestica.com/">Webestica.</a> All rights reserved</p>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+		<script src="assets/vendor/pswmeter/pswmeter.min.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+		<script src="assets/js/functions.js"></script>
+
+		<script>
+			// Initialize Supabase client
+			// IMPORTANT: Replace with your actual Supabase URL and Anon Key
+			const SUPABASE_URL = 'https://sgrymumupawnbsyinkec.supabase.co'; // <--- VERIFY THIS
+			const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNncnltdW11cGF3bmJzeWlua2VjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI0NDQyMTIsImV4cCI6MjA2ODAyMDIxMn0.s3bCSPMOTmVje16Il1ZqfL8LC2uaRtgw4gWzjO20wEM'; // <--- VERIFY THIS
+			const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+			document.addEventListener('DOMContentLoaded', () => {
+				const signupForm = document.getElementById('signupForm');
+				const usernameInput = document.getElementById('username');
+				const emailInput = document.getElementById('email');
+				const passwordInput = document.getElementById('psw-input');
+				const confirmPasswordInput = document.getElementById('confirm-psw-input');
+				const radioBuyer = document.getElementById('radioBuyer');
+				const radioSeller = document.getElementById('radioSeller');
+
+				signupForm.addEventListener('submit', async (event) => {
+					event.preventDefault(); // Prevent default form submission
+
+					const username = usernameInput.value;
+					const email = emailInput.value;
+					const password = passwordInput.value;
+					const confirmPassword = confirmPasswordInput.value;
+					const isSeller = radioSeller.checked; // True if seller, false if buyer
+
+					if (password !== confirmPassword) {
+						alert('Passwords do not match!');
+						return;
+					}
+
+					try {
+						// 1. Sign up the user with Supabase Auth
+						const { data: authData, error: authError } = await supabase.auth.signUp({
+							email: email,
+							password: password,
+							options: {
+								data: {
+									username: username,
+									is_seller: isSeller // Pass is_seller to the auth metadata
+								}
+							}
+						});
+
+						if (authError) {
+							throw authError;
+						}
+
+						// If sign-up is successful, authData.user will contain the new user's information
+						if (authData.user) {
+							console.log('User signed up successfully:', authData.user);
+							const { data: profileData, error: profileError } = await supabase
+								.from('profiles')
+								.insert([
+									{
+										id: authData.user.id, // Link to the auth.users ID
+										username: username,
+										is_seller: isSeller,
+										// Add other default profile fields if necessary
+									}
+								]);
+
+							if (profileError) {
+								console.error('Error creating profile:', profileError.message);
+								alert('Sign up successful, but failed to create profile. Please contact support.');
+							} else {
+								console.log('Profile created successfully:', profileData);
+								alert('Sign up successful! Please check your email to confirm your account.');
+								window.location.href = 'sign-in.html';
+							}
+						} else {
+							alert('Sign up initiated. Please check your email for a confirmation link.');
+						}
+
+
+					} catch (error) {
+						alert('Error during sign up: ' + error.message);
+						console.error('Sign up error:', error);
+					}
+				});
+			});
+		</script>
+
+	</body>
+
+</html>
