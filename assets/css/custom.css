@@ -1,0 +1,143 @@
+:root {
+	--slate-200: #e2e8f0 !important;
+	--slate-300: #cbd5e1 !important;
+	--slate-400: #94a3b8 !important;
+	--violet-500: #8b5cf6 !important;
+	--violet-600: #7c3aed !important;
+	--bg-dark: #13161a !important;
+	--rose-700: #be123c !important;
+	--bg-card: #0c0f15 !important;
+	--icon-round: #7c3aed !important;
+}
+
+body {
+	background: var(--bg-dark) !important;
+	color: var(--slate-200) !important;
+}
+
+.text-violet-600 {
+	color: var(--violet-600) !important;
+}
+
+.bg-violet-600 {
+	background: var(--violet-600) !important;
+}
+
+.text-violet-500 {
+	color: var(--violet-500) !important;
+}
+
+.nav-link {
+	color: var(--slate-300) !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+	color: var(--violet-600) !important;
+}
+
+.nav-link.active,
+.nav-link.show {
+	color: var(--violet-600) !important;
+}
+
+.dropdown-item:hover {
+	color: var(--violet-600) !important;
+}
+
+.btn-link,
+.icon svg {
+	color: var(--rose-700) !important;
+}
+
+.text-slate-200 {
+	color: var(--slate-200) !important;
+}
+
+.link-hover:hover {
+	color: var(--bg-dark) !important;
+}
+
+.btn-settings {
+	border: 2px solid var(--violet-600) !important;
+	color: var(--violet-600) !important;
+}
+
+.btn-settings:hover {
+	border: 2px groove var(--violet-600) !important;
+	color: var(--violet-500) !important;
+}
+
+.card,
+.card-header .bg-card-bg,
+.card-footer {
+	background: var(--bg-card) !important;
+	color: var(--slate-200) !important;
+}
+
+.share-photo {
+	width: fit-content;
+}
+
+.border {
+	border: 2px solid #31323599 !important;
+	border-radius: 5px !important;
+}
+
+.border-b {
+	border-bottom: 2px solid #31323599 !important;
+}
+
+textarea,
+input,
+.comment-text,
+.custom-select,
+select {
+	background: var(--bg-dark) !important;
+}
+
+SelectPrimitive.Item:hover {
+	background: var(--violet-600/30) !important;
+}
+
+input {
+	height: 42px !important;
+	font-size: 18px !important;
+}
+
+input::placeholder {
+	font-size: 18px !important;
+}
+
+.profile-picture {
+	position: relative !important;
+}
+
+.svg-color {
+	color: var(--violet-600) !important;
+}
+
+.img-square {
+	position: relative;
+	overflow: hidden;
+	padding-bottom: 370px;
+	overflow: hidden;
+}
+
+img.img-square {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	inset: 0px;
+	color: transparent;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.img-square img,
+.img-listing img {
+	position: absolute;
+	width: 370px;
+	height: 100%;
+	object-fit: cover;
+}

@@ -1,0 +1,76 @@
+:root {
+	--slate-200: #e2e8f0 !important;
+	--slate-300: #cbd5e1 !important;
+	--slate-400: #94a3b8 !important;
+	--violet-500: #8b5cf6 !important;
+	--violet-600: #7c3aed !important;
+	--bg-dark: #13161a !important;
+	--rose-700: #be123c !important;
+	--bg-card: #0c0f15 !important;
+	--icon-round: #7c3aed !important;
+	--bg-navbar-top: #070C1F !important;
+}
+
+body {
+	background: var(--bg-dark) !important;
+	color: var(--slate-200) !important;
+}
+
+.navbar-bg,
+.dropdown-menu {
+	background: var(--bg-navbar-top) !important;
+}
+
+.card,
+.card-header, 
+.bg-card-bg,
+.card-footer {
+	background: var(--bg-card) !important;
+	color: var(--slate-200) !important;
+}
+
+.border {
+	border: 2px solid #31323599 !important;
+	border-radius: 5px !important;
+}
+
+.rounded-5 {
+	border-radius: 5px !important;
+}
+
+textarea,
+input,
+.comment-text,
+.custom-select,
+select {
+	background: var(--bg-dark) !important;
+}
+
+.dropdown-toggle:hover {
+	color: var(--violet-500) !important;
+}
+
+.dropdown-item:hover {
+	color: var(--violet-600) !important;
+}
+
+.text-violet-600 {
+	color: var(--violet-600) !important;
+}
+
+.bg-violet-600 {
+	background: var(--violet-600) !important;
+}
+
+.bg-violet-600-hover:hover {
+	background: var(--violet-600) !important;
+}
+
+.text-slate-200 {
+	color: var(--slate-200) !important;
+}
+
+.text-slate-200.hover:hover {
+	color: var(--slate-200) !important;
+}
+
